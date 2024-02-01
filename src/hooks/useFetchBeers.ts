@@ -9,7 +9,7 @@ const useFetchBeers = () => {
 
   const fetchBeers = useCallback(async () => {
     try {
-      const response = await fetch(`${API_ROOT}invalid-url`);
+      const response = await fetch(`${API_ROOT}beers`);
       const beers = await response.json();
       setBeers(beers);
     } catch (e) {
