@@ -1,3 +1,25 @@
+# Estimates:
+
+# Web2 (21 hours):
+
+Create a grid that displays all beers. The grid should have pagination. - 4h
+Implement search bar - 2.5h
+Create a favorites functionality and page - 1h
+Save the favourite beers in local/session storage - 2h
+Add sound when we click on the beer - 1.5h
+First beer in the grid should be random - 2h
+Favorite beers should be unique, use hashed data to achieve it - 4h
+Compare favourites list to the API, visualize changes - 3h
+Test on all browsers - 1h
+
+# Web3 (17 hours):
+
+Create wallet, connect it to MM - 5h
+Authenticate FE using the wallet - 2h
+Implement disconnect wallet functionality - 4h
+Read data from a smart contract - 4h
+Try to send data to the smart contract - 2h
+
 # FE Web3
 
 # Punk Beer Web App
@@ -51,11 +73,11 @@ _Note: We would appreciate it if it works on the most major browsers (or atleast
 ### Bonus Tasks
 
 - Try to send data to the contract using a “Transaction”.
-  - `addBeer(string memory _name, 
+  - `addBeer(string memory _name,
 string memory _imageUrl,
-string memory _brewery, 
-uint8 _alcoholPercentage, 
-string memory _beerType, 
+string memory _brewery,
+uint8 _alcoholPercentage,
+string memory _beerType,
 uint8 _price)` is a way to add beers to the Smart Contract
   - `rateBeer(uint _id, uint8 _rating)` is a way to rate beers.
 
@@ -355,3 +377,34 @@ The ABI of the compiled contract is:
 	}
 ]
 ```
+
+# React + TypeScript + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+
+- Configure the top-level `parserOptions` property like this:
+
+```js
+export default {
+  // other rules...
+  parserOptions: {
+    ecmaVersion: "latest",
+    sourceType: "module",
+    project: ["./tsconfig.json", "./tsconfig.node.json"],
+    tsconfigRootDir: __dirname,
+  },
+};
+```
+
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
