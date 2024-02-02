@@ -2,30 +2,36 @@ import { FC, useCallback, useEffect, useState } from "react";
 import Grid from "./Grid";
 import useThrowAsyncError from "../hooks/useThrowAsyncError";
 import { Beer } from "../types/Beer";
-import { API_ROOT } from "../main";
+import { API_ROOT, PER_PAGE_REGEX } from "../main";
 import SearchInput from "./ui/SearchInput";
 
 const Dashboard: FC = () => {
   const throwAsyncError = useThrowAsyncError();
   const [beers, setBeers] = useState<Beer[] | undefined>();
 
-  const fetchBeers = useCallback(async () => {
-    try {
-      const response = await fetch(`${API_ROOT}beers`);
-      const beers = await response.json();
-      setBeers(beers);
-    } catch (e) {
-      throwAsyncError(e);
-    }
-  }, [throwAsyncError]);
+  const handleFetchBeers = useCallback(
+    async (query?: string) => {
+      try {
+        let url = `${API_ROOT}?per_page=78`;
+        if (query) url = url.replace(PER_PAGE_REGEX, `?beer_name=${query}`);
+
+        const response = await fetch(url);
+        const beers = await response.json();
+        setBeers(beers);
+      } catch (e) {
+        throwAsyncError(e);
+      }
+    },
+    [throwAsyncError],
+  );
 
   useEffect(() => {
-    fetchBeers();
-  }, [fetchBeers]);
+    handleFetchBeers();
+  }, [handleFetchBeers]);
 
   return (
     <>
-      <SearchInput />
+      <SearchInput onSearch={handleFetchBeers} />
       <Grid beers={beers} />
     </>
   );
