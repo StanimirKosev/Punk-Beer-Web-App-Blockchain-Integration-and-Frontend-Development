@@ -1,9 +1,10 @@
-import { useCallback, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
+import Grid from "./Grid";
+import useThrowAsyncError from "../hooks/useThrowAsyncError";
 import { Beer } from "../types/Beer";
-import useThrowAsyncError from "./useThrowAsyncError";
 import { API_ROOT } from "../main";
 
-const useFetchBeers = () => {
+const Dashboard: FC = () => {
   const throwAsyncError = useThrowAsyncError();
   const [beers, setBeers] = useState<Beer[] | undefined>();
 
@@ -17,7 +18,11 @@ const useFetchBeers = () => {
     }
   }, [throwAsyncError]);
 
-  return { beers, fetchBeers };
+  useEffect(() => {
+    fetchBeers();
+  }, [fetchBeers]);
+
+  return <Grid beers={beers} />;
 };
 
-export default useFetchBeers;
+export default Dashboard;

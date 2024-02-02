@@ -1,11 +1,11 @@
 import "./App.css";
+import Dashboard from "./components/Dashboard";
 import ErrorBoundary from "./components/ErrorBoundary";
-import Grid from "./components/Grid";
 
 function App() {
   return (
     <ErrorBoundary>
-      <Grid />
+      <Dashboard />
     </ErrorBoundary>
   );
 }

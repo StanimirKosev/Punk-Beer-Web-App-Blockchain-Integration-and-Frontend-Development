@@ -1,19 +1,17 @@
-import { FC, useEffect } from "react";
-import useFetchBeers from "../hooks/useFetchBeers";
+import { FC } from "react";
 import Card from "./Card";
 import "../styles/Grid.css";
+import { Beer } from "../types/Beer";
 
-const Grid: FC = () => {
-  const { beers, fetchBeers } = useFetchBeers();
+interface Props {
+  beers: Beer[] | undefined;
+}
 
-  useEffect(() => {
-    fetchBeers();
-  }, [fetchBeers]);
-
+const Grid: FC<Props> = ({ beers }) => {
   return (
     <div className="grid">
-      {beers?.map(({ name, description, image_url }) => (
-        <Card title={name} text={description} image={image_url} />
+      {beers?.map(({ id, name, description, image_url }) => (
+        <Card key={id} title={name} text={description} image={image_url} />
       ))}
     </div>
   );
