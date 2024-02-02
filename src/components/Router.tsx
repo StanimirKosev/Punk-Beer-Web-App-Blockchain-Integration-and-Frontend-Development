@@ -6,11 +6,7 @@ import ErrorPage from "../pages/ErrorPage";
 const Router: FC = () => {
   const router = createBrowserRouter([
     {
-      path: "/",
-      element: <App />,
-    },
-    {
-      path: "/favorites",
+      path: "/:dashboardView?",
       element: <App />,
     },
     {
