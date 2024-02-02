@@ -10,6 +10,10 @@ const Router: FC = () => {
       element: <App />,
     },
     {
+      path: "/favorites",
+      element: <App />,
+    },
+    {
       path: "*",
       element: <ErrorPage />,
     },
