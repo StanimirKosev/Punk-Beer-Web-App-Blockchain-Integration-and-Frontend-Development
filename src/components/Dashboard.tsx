@@ -3,6 +3,7 @@ import Grid from "./Grid";
 import useThrowAsyncError from "../hooks/useThrowAsyncError";
 import { Beer } from "../types/Beer";
 import { API_ROOT } from "../main";
+import SearchInput from "./ui/SearchInput";
 
 const Dashboard: FC = () => {
   const throwAsyncError = useThrowAsyncError();
@@ -22,7 +23,12 @@ const Dashboard: FC = () => {
     fetchBeers();
   }, [fetchBeers]);
 
-  return <Grid beers={beers} />;
+  return (
+    <>
+      <SearchInput />
+      <Grid beers={beers} />
+    </>
+  );
 };
 
 export default Dashboard;
