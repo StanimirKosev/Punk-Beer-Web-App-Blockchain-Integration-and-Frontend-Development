@@ -10,9 +10,15 @@ interface Props {
 const Grid: FC<Props> = ({ beers }) => {
   return (
     <div className="grid">
-      {beers?.map(({ id, name, description, image_url }) => (
-        <Card key={id} title={name} text={description} image={image_url} />
-      ))}
+      {beers && beers.length > 0 ? (
+        beers.map(({ id, name, image_url, description }) => (
+          <Card key={id} title={name} image={image_url} text={description} />
+        ))
+      ) : (
+        <div className="not-found-message">
+          <p>No beers found. Try refining your search.</p>
+        </div>
+      )}
     </div>
   );
 };

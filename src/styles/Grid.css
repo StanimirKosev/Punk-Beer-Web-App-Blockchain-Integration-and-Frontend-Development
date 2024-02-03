@@ -5,4 +5,17 @@
   gap: 30px 60px;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   max-width: 1500px;
+  height: 1140px;
+}
+
+.not-found-message {
+  display: flex;
+  justify-content: center;
+  height: 1140px;
+}
+
+.not-found-message p {
+  font-size: 24px;
+  font-weight: bold;
+  color: #555;
 }
