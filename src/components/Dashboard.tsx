@@ -30,6 +30,12 @@ const Dashboard: FC = () => {
     [throwAsyncError],
   );
 
+  const handleSearchFavoriteBeers = (query: string) =>
+    setBeers((beers) => {
+      if (!query) return getFavoriteBeersFromStorage();
+      return beers?.filter((beer) => beer.name.includes(query));
+    });
+
   useEffect(() => {
     if (dashboardView) {
       setBeers(getFavoriteBeersFromStorage());
@@ -40,7 +46,9 @@ const Dashboard: FC = () => {
 
   return (
     <>
-      <SearchInput onSearch={handleFetchBeers} />
+      <SearchInput
+        onSearch={!dashboardView ? handleFetchBeers : handleSearchFavoriteBeers}
+      />
       <Grid beers={beers} />
     </>
   );
