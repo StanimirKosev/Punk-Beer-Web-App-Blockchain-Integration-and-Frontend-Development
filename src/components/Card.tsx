@@ -10,7 +10,9 @@ interface Props {
 const Card: FC<Props> = ({ title, text, image }) => {
   return (
     <div className="card-container">
-      <div className="card-container__header">template func</div>
+      <div className="card-container__header">
+        <img src="/star.svg" alt="Star" />
+      </div>
       <div className="card-container__content">
         <img className="card-container__image" alt={title} src={image} />
         <div className="card-container__text">

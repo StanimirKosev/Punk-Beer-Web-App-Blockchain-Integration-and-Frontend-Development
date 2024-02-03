@@ -18,7 +18,7 @@ interface State {
  * - Wrap components that can potentially have errors to provide graceful error handling.
  *
  * - Limitations: ErrorBoundary does not catch async code and event handlers.
- * - Combine with useThrowAsyncError for uber error handling.
+ * - Combine with `useThrowAsyncError` for uber error handling.
  */
 class ErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
