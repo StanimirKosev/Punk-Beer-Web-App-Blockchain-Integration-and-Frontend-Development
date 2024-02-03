@@ -9,6 +9,17 @@ interface State {
   hasError: boolean;
 }
 
+/**
+ * ErrorBoundary class component for handling errors in React applications.
+ *
+ * @description
+ *
+ * - Used to prevent the entire app from unmounting due to errors thrown during the React lifecycle.
+ * - Wrap components that can potentially have errors to provide graceful error handling.
+ *
+ * - Limitations: ErrorBoundary does not catch async code and event handlers.
+ * - Combine with useThrowAsyncError for uber error handling.
+ */
 class ErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
