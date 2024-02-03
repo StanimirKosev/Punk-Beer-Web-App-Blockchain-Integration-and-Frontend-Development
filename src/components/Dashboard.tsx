@@ -4,10 +4,15 @@ import useThrowAsyncError from "../hooks/useThrowAsyncError";
 import { Beer } from "../types/Beer";
 import { API_ROOT, PER_PAGE_REGEX } from "../main";
 import SearchInput from "./ui/SearchInput";
+import { useParams } from "react-router-dom";
+import { getFavoriteBeersFromStorage } from "../utils/utils";
 
 const Dashboard: FC = () => {
+  const { dashboardView } = useParams<{
+    dashboardView: "favorites" | undefined;
+  }>();
   const throwAsyncError = useThrowAsyncError();
-  const [beers, setBeers] = useState<Beer[] | undefined>();
+  const [beers, setBeers] = useState<Beer[] | undefined>(undefined);
 
   const handleFetchBeers = useCallback(
     async (query?: string) => {
@@ -26,8 +31,12 @@ const Dashboard: FC = () => {
   );
 
   useEffect(() => {
-    handleFetchBeers();
-  }, [handleFetchBeers]);
+    if (dashboardView) {
+      setBeers(getFavoriteBeersFromStorage());
+    } else {
+      handleFetchBeers();
+    }
+  }, [handleFetchBeers, dashboardView]);
 
   return (
     <>

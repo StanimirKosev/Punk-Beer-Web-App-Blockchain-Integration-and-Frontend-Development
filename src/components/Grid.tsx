@@ -12,7 +12,13 @@ const Grid: FC<Props> = ({ beers }) => {
     <div className="grid">
       {beers && beers.length > 0 ? (
         beers.map(({ id, name, image_url, description }) => (
-          <Card key={id} title={name} image={image_url} text={description} />
+          <Card
+            key={id}
+            id={id}
+            name={name}
+            image_url={image_url}
+            description={description}
+          />
         ))
       ) : (
         <div className="not-found-message">

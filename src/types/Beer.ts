@@ -1,27 +1,28 @@
 export interface Beer {
   id: number;
   name: string;
-  tagline: string;
-  first_brewed: string;
   description: string;
   image_url: string;
-  abv: number;
-  ibu: number;
-  target_fg: number;
-  target_og: number;
-  ebc: number;
-  srm: number;
-  ph: number;
-  attenuation_level: number;
-  volume: {
+
+  tagline?: string;
+  first_brewed?: string;
+  abv?: number;
+  ibu?: number;
+  target_fg?: number;
+  target_og?: number;
+  ebc?: number;
+  srm?: number;
+  ph?: number;
+  attenuation_level?: number;
+  volume?: {
     value: number;
     unit: string;
   };
-  boil_volume: {
+  boil_volume?: {
     value: number;
     unit: string;
   };
-  method: {
+  method?: {
     mash_temp: {
       temp: {
         value: number;
@@ -37,7 +38,7 @@ export interface Beer {
     };
     twist: null | string;
   };
-  ingredients: {
+  ingredients?: {
     malt: {
       name: string;
       amount: {
@@ -56,7 +57,7 @@ export interface Beer {
     }[];
     yeast: string;
   };
-  food_pairing: string[];
-  brewers_tips: string;
-  contributed_by: string;
+  food_pairing?: string[];
+  brewers_tips?: string;
+  contributed_by?: string;
 }
