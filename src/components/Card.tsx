@@ -3,15 +3,22 @@ import "../styles/Card.css";
 import useThrowAsyncError from "../hooks/useThrowAsyncError";
 import { getFavoriteBeersFromStorage } from "../utils/utils";
 import { useParams } from "react-router-dom";
+import { WithRandomBeerProps } from "./withRandomBeer";
 
-interface Props {
+interface Props extends WithRandomBeerProps {
   name: string;
   description: string;
   image_url: string;
   id: number;
 }
 
-const Card: FC<Props> = ({ name, description, image_url, id }) => {
+const Card: FC<Props> = ({
+  name,
+  description,
+  image_url,
+  id,
+  onFetchRandomBeer,
+}) => {
   const { dashboardView } = useParams<{
     dashboardView: "favorites" | undefined;
   }>();
@@ -34,7 +41,7 @@ const Card: FC<Props> = ({ name, description, image_url, id }) => {
   };
 
   return (
-    <div className="card-container">
+    <div className="card-container" onClick={onFetchRandomBeer}>
       <div className="card-container__header">
         {!dashboardView ? (
           <img src="/star.svg" alt="Star" onClick={handleAddBeerToFavorites} />
