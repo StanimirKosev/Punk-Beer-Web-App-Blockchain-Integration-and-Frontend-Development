@@ -33,7 +33,9 @@ const Dashboard: FC = () => {
   const handleSearchFavoriteBeers = (query: string) =>
     setBeers((beers) => {
       if (!query) return getFavoriteBeersFromStorage();
-      return beers?.filter((beer) => beer.name.includes(query));
+      return beers?.filter((beer) =>
+        beer.name.toLowerCase().includes(query.toLowerCase()),
+      );
     });
 
   useEffect(() => {
