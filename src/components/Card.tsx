@@ -36,7 +36,7 @@ const Card: FC<Props> = ({
         (beer) => beer.id === id,
       );
       if (!isAlreadyInFavorites)
-        favoriteBeers.push({ id, name, description, image_url });
+        favoriteBeers.unshift({ id, name, description, image_url });
 
       sessionStorage.setItem("favorites", JSON.stringify(favoriteBeers));
     } catch (e) {
