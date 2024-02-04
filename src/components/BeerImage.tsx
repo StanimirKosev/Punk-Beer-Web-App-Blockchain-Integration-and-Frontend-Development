@@ -1,5 +1,9 @@
 import { FC, useImperativeHandle, useRef, useState } from "react";
 import "../styles/BeerImage.css";
+import { Howl } from "howler";
+import frankieScreamingBitcoin from "../assets/frankie-macdonald-screaming-bitcoin.mp3";
+import saylorThereIsNoSecondBest from "../assets/saylor-there-is-no-second-best.mp3";
+import { sample } from "lodash";
 
 interface Props {
   name: string;
@@ -18,6 +22,12 @@ const BeerImage: FC<Props> = ({ name, image_url, isUndefinedRandomBeer }) => {
       openBeer: () => {
         if (!isUndefinedRandomBeer || !image_url) return;
         setShouldShake(true);
+
+        Howler.stop();
+        new Howl({
+          src: [sample([saylorThereIsNoSecondBest, frankieScreamingBitcoin])],
+          volume: 0.1,
+        }).play();
       },
     }),
     [isUndefinedRandomBeer, image_url],
