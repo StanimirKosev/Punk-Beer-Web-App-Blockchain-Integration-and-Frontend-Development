@@ -3,6 +3,7 @@ import useThrowAsyncError from "../hooks/useThrowAsyncError";
 import { API_ROOT } from "../main";
 import { Beer } from "../types/Beer";
 import Card from "./Card";
+import randomBeerPlaceholder from "../assets/random-beer.avif";
 
 export interface WithRandomBeerProps {
   onFetchRandomBeer?: () => void;
@@ -38,9 +39,12 @@ const withRandomBeer = <P extends WithRandomBeerProps>(
         {...props}
         onFetchRandomBeer={handleFetchRandomBeer}
         id={randomBeer?.id}
-        name={randomBeer?.name}
-        image_url={randomBeer?.image_url}
-        description={randomBeer?.description}
+        name={randomBeer?.name || "Random Beer"}
+        image_url={randomBeer ? randomBeer?.image_url : randomBeerPlaceholder}
+        description={
+          randomBeer?.description ||
+          "Uncover the mystery! Roll the dice to explore the world of craft brews."
+        }
       />
     );
   };

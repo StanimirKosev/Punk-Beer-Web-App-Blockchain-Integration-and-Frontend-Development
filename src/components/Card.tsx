@@ -24,7 +24,10 @@ const Card: FC<Props> = ({
   }>();
   const throwAsyncError = useThrowAsyncError();
 
-  const handleAddBeerToFavorites = () => {
+  const handleAddBeerToFavorites: React.MouseEventHandler<HTMLImageElement> = (
+    e,
+  ) => {
+    e.stopPropagation();
     try {
       const favoriteBeers = getFavoriteBeersFromStorage();
 
@@ -41,11 +44,14 @@ const Card: FC<Props> = ({
   };
 
   return (
-    <div className="card-container" onClick={onFetchRandomBeer}>
+    <div className="card-container">
       <div className="card-container__header">
-        {!dashboardView ? (
+        {!dashboardView && id && (
           <img src="/star.svg" alt="Star" onClick={handleAddBeerToFavorites} />
-        ) : null}
+        )}
+        {onFetchRandomBeer && (
+          <img src="/dice.svg" alt="Star" onClick={onFetchRandomBeer} />
+        )}
       </div>
       <div className="card-container__content">
         <img className="card-container__image" alt={name} src={image_url} />
