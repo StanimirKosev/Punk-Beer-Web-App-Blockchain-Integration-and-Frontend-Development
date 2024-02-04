@@ -27,10 +27,6 @@
   display: flex;
 }
 
-.card-container__image {
-  width: 35%;
-}
-
 .card-container__text {
   width: 65%;
   padding-left: 10px;

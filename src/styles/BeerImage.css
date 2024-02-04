@@ -1,0 +1,19 @@
+.card-container__image {
+  width: 35%;
+}
+
+@keyframes shake-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.shake {
+  animation: shake-animation 0.3s linear;
+}

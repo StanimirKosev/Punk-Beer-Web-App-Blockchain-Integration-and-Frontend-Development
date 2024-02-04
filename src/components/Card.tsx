@@ -4,6 +4,7 @@ import useThrowAsyncError from "../hooks/useThrowAsyncError";
 import { getFavoriteBeersFromStorage } from "../utils/utils";
 import { useParams } from "react-router-dom";
 import { WithRandomBeerProps } from "./withRandomBeer";
+import BeerImage from "./BeerImage";
 
 interface Props extends WithRandomBeerProps {
   name: string;
@@ -54,7 +55,11 @@ const Card: FC<Props> = ({
         )}
       </div>
       <div className="card-container__content">
-        <img className="card-container__image" alt={name} src={image_url} />
+        <BeerImage
+          name={name}
+          image_url={image_url}
+          isUndefinedRandomBeer={!!id}
+        />
         <div className="card-container__text">
           <div className="card-container__text__header">{name}</div>
           <div className="card-container__text__message">{description}</div>
