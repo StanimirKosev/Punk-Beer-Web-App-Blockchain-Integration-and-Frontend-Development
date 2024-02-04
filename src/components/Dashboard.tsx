@@ -5,7 +5,7 @@ import { Beer } from "../types/Beer";
 import { API_ROOT, PER_PAGE_REGEX } from "../main";
 import SearchInput from "./ui/SearchInput";
 import { useParams } from "react-router-dom";
-import { getFavoriteBeersFromStorage } from "../utils/utils";
+import { getFavoriteBeers } from "../utils/utils";
 
 const Dashboard: FC = () => {
   const { dashboardView } = useParams<{
@@ -32,7 +32,7 @@ const Dashboard: FC = () => {
 
   const handleSearchFavoriteBeers = (query: string) =>
     setBeers((beers) => {
-      if (!query) return getFavoriteBeersFromStorage();
+      if (!query) return getFavoriteBeers();
       return beers?.filter((beer) =>
         beer.name.toLowerCase().includes(query.toLowerCase()),
       );
@@ -40,7 +40,7 @@ const Dashboard: FC = () => {
 
   useEffect(() => {
     if (dashboardView) {
-      setBeers(getFavoriteBeersFromStorage());
+      setBeers(getFavoriteBeers());
     } else {
       handleFetchBeers();
     }

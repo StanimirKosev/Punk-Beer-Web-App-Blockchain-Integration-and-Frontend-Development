@@ -1,12 +1,17 @@
 import { Beer } from "../types/Beer";
+import { SHA256 } from "crypto-js";
 
-export const getFavoriteBeersFromStorage = (): Beer[] => {
-  const favoritesFromStorage = sessionStorage.getItem("favorites");
-  let favoriteBeers: Beer[] = [];
+export const getFavoriteBeers = (): Beer[] => {
+  return Array.from(getMapFromStorage().values());
+};
 
-  if (favoritesFromStorage) {
-    favoriteBeers = JSON.parse(favoritesFromStorage) as Beer[];
-  }
+export const getMapFromStorage = (): Map<string, Beer> => {
+  const serializedMap = sessionStorage.getItem("favorites");
 
-  return favoriteBeers;
+  if (serializedMap) return new Map(JSON.parse(serializedMap));
+  return new Map();
+};
+
+export const generateHash = (data: Beer): string => {
+  return SHA256(JSON.stringify(data)).toString();
 };

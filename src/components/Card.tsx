@@ -1,7 +1,7 @@
 import { FC } from "react";
 import "../styles/Card.css";
 import useThrowAsyncError from "../hooks/useThrowAsyncError";
-import { getFavoriteBeersFromStorage } from "../utils/utils";
+import { generateHash, getMapFromStorage } from "../utils/utils";
 import { useParams } from "react-router-dom";
 import { WithRandomBeerProps } from "./withRandomBeer";
 import BeerImage from "./BeerImage";
@@ -30,15 +30,14 @@ const Card: FC<Props> = ({
   ) => {
     e.stopPropagation();
     try {
-      const favoriteBeers = getFavoriteBeersFromStorage();
+      const map = getMapFromStorage();
+      const beer = { id, name, description, image_url };
+      const beerHash = generateHash(beer);
 
-      const isAlreadyInFavorites = favoriteBeers?.some(
-        (beer) => beer.id === id,
-      );
-      if (!isAlreadyInFavorites)
-        favoriteBeers.unshift({ id, name, description, image_url });
-
-      sessionStorage.setItem("favorites", JSON.stringify(favoriteBeers));
+      if (!map.has(beerHash)) {
+        map.set(beerHash, beer);
+        sessionStorage.setItem("favorites", JSON.stringify([...map]));
+      }
     } catch (e) {
       throwAsyncError(e);
     }
