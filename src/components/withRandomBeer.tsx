@@ -34,17 +34,20 @@ const withRandomBeer = <P extends WithRandomBeerProps>(
       }
     };
 
+    const beer = {
+      ...randomBeer,
+      name: randomBeer?.name || "Random Beer",
+      image_url: randomBeer ? randomBeer?.image_url : randomBeerPlaceholder,
+      description:
+        randomBeer?.description ||
+        "Uncover the mystery! Roll the dice to explore the world of craft brews.",
+    };
+
     return (
       <Component
         {...props}
         onFetchRandomBeer={handleFetchRandomBeer}
-        id={randomBeer?.id}
-        name={randomBeer?.name || "Random Beer"}
-        image_url={randomBeer ? randomBeer?.image_url : randomBeerPlaceholder}
-        description={
-          randomBeer?.description ||
-          "Uncover the mystery! Roll the dice to explore the world of craft brews."
-        }
+        beer={beer}
       />
     );
   };

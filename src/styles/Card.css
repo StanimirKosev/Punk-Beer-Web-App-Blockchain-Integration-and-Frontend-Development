@@ -53,3 +53,22 @@ img {
   max-height: 100%;
   object-fit: scale-down;
 }
+
+.changed,
+.unchanged {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.changed {
+  font-weight: bold;
+  color: #ff0000;
+}
+
+.unchanged {
+  font-style: italic;
+  color: #008000;
+}

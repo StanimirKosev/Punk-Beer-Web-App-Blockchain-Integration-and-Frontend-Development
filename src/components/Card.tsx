@@ -2,33 +2,26 @@ import { FC } from "react";
 import "../styles/Card.css";
 import useThrowAsyncError from "../hooks/useThrowAsyncError";
 import { generateHash, getMapFromStorage } from "../utils/utils";
-import { useParams } from "react-router-dom";
 import { WithRandomBeerProps } from "./withRandomBeer";
 import BeerImage from "./BeerImage";
+import { Beer } from "../types/Beer";
 
 interface Props extends WithRandomBeerProps {
-  name: string;
-  description: string;
-  image_url: string;
-  id: number;
+  beer?: Beer;
+  changedFavoriteBeerIndicator?: "changed" | "unchanged" | undefined;
 }
 
 const Card: FC<Props> = ({
-  name,
-  description,
-  image_url,
-  id,
+  beer,
+  changedFavoriteBeerIndicator,
   onFetchRandomBeer,
 }) => {
-  const { dashboardView } = useParams<{
-    dashboardView: "favorites" | undefined;
-  }>();
   const throwAsyncError = useThrowAsyncError();
 
   const handleAddBeerToFavorites = () => {
+    if (!beer) return;
     try {
       const map = getMapFromStorage();
-      const beer = { id, name, description, image_url };
       const beerHash = generateHash(beer);
 
       if (!map.has(beerHash)) {
@@ -40,10 +33,19 @@ const Card: FC<Props> = ({
     }
   };
 
+  const { id, name, description, image_url } = beer || {};
+  const favoriteBeerTitle =
+    changedFavoriteBeerIndicator === "changed"
+      ? "Updated since your last visit!"
+      : changedFavoriteBeerIndicator === "unchanged"
+        ? "No changes since your last visit."
+        : null;
+
   return (
     <div className="card-container">
-      <div className="card-container__header">
-        {!dashboardView && id && (
+      <div className={`card-container__header ${changedFavoriteBeerIndicator}`}>
+        {favoriteBeerTitle}
+        {!changedFavoriteBeerIndicator && id && (
           <img src="/star.svg" alt="Star" onClick={handleAddBeerToFavorites} />
         )}
         {onFetchRandomBeer && (

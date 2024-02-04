@@ -6,8 +6,8 @@ import saylorThereIsNoSecondBest from "../assets/saylor-there-is-no-second-best.
 import { sample } from "lodash";
 
 interface Props {
-  name: string;
-  image_url: string;
+  name: string | undefined;
+  image_url: string | undefined;
   isUndefinedRandomBeer: boolean;
 }
 
