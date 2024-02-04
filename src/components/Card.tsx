@@ -25,10 +25,7 @@ const Card: FC<Props> = ({
   }>();
   const throwAsyncError = useThrowAsyncError();
 
-  const handleAddBeerToFavorites: React.MouseEventHandler<HTMLImageElement> = (
-    e,
-  ) => {
-    e.stopPropagation();
+  const handleAddBeerToFavorites = () => {
     try {
       const map = getMapFromStorage();
       const beer = { id, name, description, image_url };
