@@ -17,7 +17,7 @@ const Dashboard: FC = () => {
   const handleFetchBeers = useCallback(
     async (query?: string) => {
       try {
-        let url = `${API_ROOT}?per_page=78`;
+        let url = `${API_ROOT}?per_page=77`;
         if (query) url = url.replace(PER_PAGE_REGEX, `?beer_name=${query}`);
 
         const response = await fetch(url);

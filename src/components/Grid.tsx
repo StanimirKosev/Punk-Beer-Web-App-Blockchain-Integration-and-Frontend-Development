@@ -16,27 +16,19 @@ const Grid: FC<Props> = ({ beers }) => {
 
   return (
     <div className="grid">
-      {beers && beers.length > 0 ? (
-        beers.map(({ id, name, image_url, description }, index) =>
-          index === 0 && !dashboardView ? (
-            <CardWithRandomBeer
-              key={id}
-              id={id}
-              name={name}
-              image_url={image_url}
-              description={description}
-            />
-          ) : (
-            <Card
-              key={id}
-              id={id}
-              name={name}
-              image_url={image_url}
-              description={description}
-            />
-          ),
-        )
-      ) : (
+      {!dashboardView && (
+        <CardWithRandomBeer id={0} name={""} image_url={""} description={""} />
+      )}
+      {beers?.map(({ id, name, image_url, description }) => (
+        <Card
+          key={id}
+          id={id}
+          name={name}
+          image_url={image_url}
+          description={description}
+        />
+      ))}
+      {beers?.length === 0 && dashboardView && (
         <div className="not-found-message">
           <p>No beers found. Try refining your search.</p>
         </div>
