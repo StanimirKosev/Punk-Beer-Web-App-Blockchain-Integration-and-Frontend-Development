@@ -34,8 +34,3 @@
 .header ul li a:hover {
   opacity: 0.5;
 }
-
-.beer-count {
-  display: flex;
-  align-items: center;
-}

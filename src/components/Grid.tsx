@@ -5,6 +5,7 @@ import { Beer } from "../types/Beer";
 import { CardWithRandomBeer } from "./withRandomBeer";
 import { useParams } from "react-router-dom";
 import useCompareFavoriteBeersToApi from "../hooks/useCompareFavoriteBeersToApi";
+import { CardWithRandomBeerFromContract } from "./withRandomBeerFromContract";
 
 interface Props {
   beers: Beer[] | undefined;
@@ -21,6 +22,7 @@ const Grid: FC<Props> = ({ beers }) => {
 
   return (
     <div className="grid">
+      {!inFavorites && <CardWithRandomBeerFromContract />}
       {!inFavorites && <CardWithRandomBeer />}
       {beers?.map((beer) => (
         <Card
