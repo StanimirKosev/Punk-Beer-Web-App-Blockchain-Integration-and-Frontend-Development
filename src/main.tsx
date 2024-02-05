@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
 
+export const CONTRACT_ADDRESS = "0x7b16818954853f3583cdc59D654d027C2A4CC62d";
 export const API_ROOT = "https://api.punkapi.com/v2/beers";
 export const PER_PAGE_REGEX = /\?per_page=(\d+)/;
 
