@@ -1,0 +1,30 @@
+.wallet-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.wallet-option-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.wallet-option-button:hover {
+  background-color: #0056b3;
+}
+
+.connectors-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.failure-reason {
+  color: red;
+  font-weight: bold;
+}

@@ -1,0 +1,17 @@
+.account-container {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  gap: 20px;
+}
+
+.disconnect {
+  list-style: none;
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+}
+
+.disconnect:hover {
+  opacity: 0.5;
+}
