@@ -8,14 +8,13 @@ import { sample } from "lodash";
 interface Props {
   name: string | undefined;
   image_url: string | undefined;
-  isUndefinedRandomBeer: boolean;
 }
 
-const BeerImage: FC<Props> = ({ name, image_url, isUndefinedRandomBeer }) => {
+const BeerImage: FC<Props> = ({ name, image_url }) => {
   const [shouldShake, setShouldShake] = useState<boolean>(false);
 
   const handleClickBeer = () => {
-    if (!isUndefinedRandomBeer || !image_url) return;
+    if (!image_url || image_url.includes("random-beer.avif")) return;
     setShouldShake(true);
 
     Howler.stop();

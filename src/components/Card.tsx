@@ -53,11 +53,7 @@ const Card: FC<Props> = ({
         )}
       </div>
       <div className="card-container__content">
-        <BeerImage
-          name={name}
-          image_url={image_url}
-          isUndefinedRandomBeer={!!id}
-        />
+        <BeerImage name={name} image_url={image_url} />
         <div className="card-container__text">
           <div className="card-container__text__header">{name}</div>
           <div className="card-container__text__message">{description}</div>
