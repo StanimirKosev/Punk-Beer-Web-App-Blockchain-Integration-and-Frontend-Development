@@ -3,7 +3,9 @@ import "../styles/Account.css";
 
 const Account = () => {
   const { address } = useAccount();
-  const { disconnect } = useDisconnect();
+  const { disconnect } = useDisconnect({
+    mutation: { onSuccess: () => sessionStorage.removeItem("favorites") },
+  });
   const { data: ensName } = useEnsName({ address });
   const { data: ensAvatar } = useEnsAvatar({ name: ensName! });
 
