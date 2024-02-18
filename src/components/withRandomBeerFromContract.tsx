@@ -10,6 +10,7 @@ import { WithRandomBeerProps } from "./withRandomBeer";
 import { readContract } from "@wagmi/core";
 import { config } from "../../config";
 import randomBeerPlaceholder from "../assets/random-beer.avif";
+import useThrowAsyncError from "../hooks/useThrowAsyncError";
 
 /**
  *
@@ -24,6 +25,7 @@ const withRandomBeerFromContract = <P extends WithRandomBeerProps>(
 ): FC<P & WithRandomBeerProps> => {
   return (props) => {
     const { address } = useAccount();
+    const throwAsyncError = useThrowAsyncError();
     const beerCount = useGetBeerCountFromContract();
     const [randomBeerFromContract, setRandomBeerFromContract] = useState<
       | readonly [
@@ -39,20 +41,24 @@ const withRandomBeerFromContract = <P extends WithRandomBeerProps>(
       | undefined
     >(undefined);
 
-    const handleFetchRandomBeerFromContract = async () => {
-      const randomIndex = sample([...Array(beerCount).keys()]);
+    const handleReadRandomBeerFromContract = async () => {
+      try {
+        const randomIndex = sample([...Array(beerCount).keys()]);
 
-      if (!randomIndex) return;
-      const randomBeer = await readContract(config, {
-        abi: beerAbi,
-        address: CONTRACT_ADDRESS,
-        functionName: "beers",
-        account: address,
-        chainId: sepolia.id,
-        args: [BigInt(randomIndex)],
-      });
+        if (!randomIndex) return;
 
-      setRandomBeerFromContract(randomBeer);
+        const randomBeer = await readContract(config, {
+          abi: beerAbi,
+          address: CONTRACT_ADDRESS,
+          functionName: "beers",
+          account: address,
+          chainId: sepolia.id,
+          args: [BigInt(randomIndex)],
+        });
+        setRandomBeerFromContract(randomBeer);
+      } catch (e) {
+        throwAsyncError(e);
+      }
     };
 
     const beer = {
@@ -69,7 +75,7 @@ const withRandomBeerFromContract = <P extends WithRandomBeerProps>(
       <Component
         {...props}
         beer={beer}
-        onFetchRandomBeer={handleFetchRandomBeerFromContract}
+        onFetchRandomBeer={handleReadRandomBeerFromContract}
       />
     );
   };
