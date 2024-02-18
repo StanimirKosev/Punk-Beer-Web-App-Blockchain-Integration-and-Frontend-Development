@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import Grid from "./Grid";
 import useThrowAsyncError from "../hooks/useThrowAsyncError";
 import { Beer } from "../types/Beer";
@@ -14,21 +14,18 @@ const Dashboard: FC = () => {
   const throwAsyncError = useThrowAsyncError();
   const [beers, setBeers] = useState<Beer[] | undefined>(undefined);
 
-  const handleFetchBeers = useCallback(
-    async (query?: string) => {
-      try {
-        let url = `${API_ROOT}?per_page=77`;
-        if (query) url = url.replace(PER_PAGE_REGEX, `?beer_name=${query}`);
+  const handleFetchBeers = async (query?: string) => {
+    try {
+      let url = `${API_ROOT}?per_page=77`;
+      if (query) url = url.replace(PER_PAGE_REGEX, `?beer_name=${query}`);
 
-        const response = await fetch(url);
-        const beers = await response.json();
-        setBeers(beers);
-      } catch (e) {
-        throwAsyncError(e);
-      }
-    },
-    [throwAsyncError],
-  );
+      const response = await fetch(url);
+      const beers = await response.json();
+      setBeers(beers);
+    } catch (e) {
+      throwAsyncError(e);
+    }
+  };
 
   const handleSearchFavoriteBeers = (query: string) =>
     setBeers((beers) => {
@@ -44,7 +41,8 @@ const Dashboard: FC = () => {
     } else {
       handleFetchBeers();
     }
-  }, [handleFetchBeers, dashboardView]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dashboardView]);
 
   return (
     <>
