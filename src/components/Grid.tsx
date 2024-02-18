@@ -22,8 +22,12 @@ const Grid: FC<Props> = ({ beers }) => {
 
   return (
     <div className="grid">
-      {!inFavorites && <CardWithRandomBeerFromContract />}
-      {!inFavorites && <CardWithRandomBeer />}
+      {!inFavorites && (
+        <>
+          <CardWithRandomBeerFromContract />
+          <CardWithRandomBeer />
+        </>
+      )}
       {beers?.map((beer) => (
         <Card
           key={beer.id}
