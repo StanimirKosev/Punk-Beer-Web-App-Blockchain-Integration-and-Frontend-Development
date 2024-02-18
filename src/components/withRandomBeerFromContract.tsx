@@ -14,6 +14,9 @@ import useThrowAsyncError from "../hooks/useThrowAsyncError";
 
 /**
  *
+ * Using HOCs here, but they contain highly specific information and won't be reused anywhere.
+ * A normal component would suffice for this purpose.
+ *
  * Higher-order component (HOC)
  *
  * This HOC serves as an Injector.
