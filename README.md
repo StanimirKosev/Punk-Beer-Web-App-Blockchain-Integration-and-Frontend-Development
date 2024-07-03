@@ -1,24 +1,4 @@
-# Estimates:
-
-# Web2 (21 hours):
-
-Create a grid that displays all beers. The grid should have pagination. - 4h
-Implement search bar - 2.5h
-Create a favorites functionality and page - 1h
-Save the favourite beers in local/session storage - 2h
-Add sound when we click on the beer - 1.5h
-First beer in the grid should be random - 2h
-Favorite beers should be unique, use hashed data to achieve it - 4h
-Compare favourites list to the API, visualize changes - 3h
-Test on all browsers - 1h
-
-# Web3 (17 hours):
-
-Create wallet, connect it to MM - 5h
-Authenticate FE using the wallet - 2h
-Implement disconnect wallet functionality - 4h
-Read data from a smart contract - 4h
-Try to send data to the smart contract - 2h
+❗ API is shut down - https://x.com/sammdec/status/1768039237977354751
 
 # FE Web3
 
